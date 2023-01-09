@@ -45,7 +45,7 @@ function Home() {
                                                                                                  href="https://workers.cloudflare.com/"
                                                                                                  target="_new">Cloudflare
                 Workers</a>, and D1 - Cloudflare's newest SQL database, running on SQLite.</Paragraph>
-            <Paragraph>Read our<a className="link" href="https://blog.cloudflare.com/introducing-d1"
+            <Paragraph>Read our <a className="link" href="https://blog.cloudflare.com/introducing-d1"
                                                      target="_new">D1 announcement</a> to learn more about D1.</Paragraph>
             <Paragraph>This dataset was sourced from <a className="link"
                                                                            href="https://github.com/jpwhite3/northwind-SQLite3"

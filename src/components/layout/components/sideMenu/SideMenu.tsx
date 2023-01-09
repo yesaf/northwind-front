@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
+import MenuBlock from './MenuBlock';
 
 const Aside = styled.aside`
   display: flex;
+  flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
@@ -11,6 +13,8 @@ const Aside = styled.aside`
   background-color: rgb(31 41 55/var(--tw-bg-opacity));
   height: 100vh;
   width: 15rem;
+  z-index: 40;
+  overflow: hidden;
 `;
 
 const Name = styled.div`
@@ -25,6 +29,7 @@ const Name = styled.div`
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   width: 100%;
+  overflow: hidden;
 `;
 
 const Bold = styled.b`
@@ -37,9 +42,53 @@ function SideMenu() {
             <Aside>
                 <Name>
                     <div>
-                        <Bold>Northwind</Bold>{" Traders"}
+                        <Bold>Northwind</Bold> Traders
                     </div>
                 </Name>
+                <MenuBlock label={'General'} items={[
+                    {
+                        name: 'Home',
+                        icon: 'home',
+                        link: '/',
+                    },
+                    {
+                        name: 'Dashboard',
+                        icon: 'display_settings',
+                        link: '/dash',
+                    }
+                ]}/>
+                <MenuBlock label={'Backoffice'} items={[
+                    {
+                        name: 'Suppliers',
+                        icon: 'inventory',
+                        link: '/suppliers',
+                    },
+                    {
+                        name: 'Products',
+                        icon: 'production_quantity_limits',
+                        link: '/products',
+                    },
+                    {
+                        name: 'Orders',
+                        icon: 'shopping_cart',
+                        link: '/orders',
+                    },
+                    {
+                        name: 'Employees',
+                        icon: 'badge',
+                        link: '/employees',
+                    },
+                    {
+                        name: 'Customers',
+                        icon: 'group',
+                        link: '/customers',
+                    },
+                    {
+                        name: 'Search',
+                        icon: 'search',
+                        link: '/search',
+                    }
+                ]}/>
             </Aside>
         </Fragment>
     );
