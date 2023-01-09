@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Home from './components/home/Home';
+import Dashboard from './components/dashboard/Dashboard';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Layout><Home/></Layout>} />
+                <Route path="/dash" element={<Layout><Dashboard/></Layout>} />
 
                 <Route path="*" element={<Layout><h1>404</h1></Layout>} />
             </Routes>

@@ -39,7 +39,7 @@ function TopBar() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            dispatch(updateTime(new Date()));
+            dispatch(updateTime((new Date()).toLocaleTimeString()));
         }, 1000);
 
         return () => clearInterval(interval);
@@ -48,7 +48,7 @@ function TopBar() {
     return (
         <Fragment>
             <NavBar>
-                <TimeContainer>{time.toLocaleTimeString('it-IT')}</TimeContainer>
+                <TimeContainer>{time}</TimeContainer>
             </NavBar>
         </Fragment>
     );
