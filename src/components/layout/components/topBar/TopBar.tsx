@@ -1,5 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { userTimeSlice } from '../../../../store/reducers/UserTimeSlice';
 
 const TimeContainer = styled.div`
   display: flex;
@@ -31,10 +33,22 @@ const NavBar = styled.nav`
 
 
 function TopBar() {
+    const { updateTime } = userTimeSlice.actions;
+    const dispatch = useAppDispatch();
+    const { time } = useAppSelector(state => state.userTime);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            dispatch(updateTime(new Date()));
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [])
+
     return (
         <Fragment>
             <NavBar>
-                <TimeContainer>12:00:00</TimeContainer>
+                <TimeContainer>{time.toLocaleTimeString('it-IT')}</TimeContainer>
             </NavBar>
         </Fragment>
     );
