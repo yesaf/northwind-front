@@ -8,7 +8,8 @@ const TimeContainer = styled.div`
   --tw-text-opacity: 1;
   color: rgb(31 41 55/var(--tw-text-opacity));
   margin-left: 1.5rem;
-  padding: 1rem;
+  padding: 0.5rem 0.75rem;
+  align-items: center;
 `;
 
 const NavBar = styled.nav`
@@ -17,6 +18,7 @@ const NavBar = styled.nav`
   background-color: rgb(255 255 255/var(--tw-bg-opacity));
   border-bottom-width: 1px;
   border-color: rgb(243 244 246/var(--tw-border-opacity));
+  border-style: solid;
   display: flex;
   height: 3.5rem;
   left: 0;
@@ -29,6 +31,7 @@ const NavBar = styled.nav`
   width: auto;
   z-index: 30;
   padding-left: 15rem;
+  box-sizing: border-box;
 `;
 
 

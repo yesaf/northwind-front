@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
-
+import MaterialIcon from '../../../../styles/MaterialIcon';
 
 const MenuLabel = styled.div`
   --tw-text-opacity: 1;
@@ -26,7 +26,7 @@ interface MenuItemProps {
 const MenuItem = styled.li.attrs<MenuItemProps>(props => ({
     style: {
         'backgroundColor': props.isActive ? 'rgb(55 65 81)' : 'transparent',
-    }
+    },
 }))<MenuItemProps>`
   --tw-bg-opacity: 1;
 `;
@@ -39,24 +39,8 @@ const MenuLink = styled(Link)`
   padding-top: 0.5rem;
 `;
 
-const Icon = styled.span`
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-
-  align-items: center;
-  display: inline-flex;
-  height: 1.5rem;
-  justify-content: center;
+const Icon = styled(MaterialIcon)`
+  flex: none;
   width: 3rem;
 `;
 
