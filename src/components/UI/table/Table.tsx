@@ -38,6 +38,7 @@ interface TableProps {
     pagesNumber: number;
     linksColumn: string;
     idColumn: string;
+    title: string;
     onPageChange: (newPage: number) => void;
 }
 
@@ -56,7 +57,7 @@ function Table(props: TableProps) {
     return (
         <TableContainer>
             <Header>
-                <HeaderTitle>Suppliers</HeaderTitle>
+                <HeaderTitle>{props.title}</HeaderTitle>
                 <HeaderIcon>redo</HeaderIcon>
             </Header>
             <table>

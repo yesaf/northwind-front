@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Table from '../UI/table/Table';
-import { SuppliersData } from '../../tmp/data';
+import { suppliersData } from '../../tmp/data';
 import styled from 'styled-components';
 
 const Avatar = styled.img`
@@ -14,7 +14,7 @@ const AvatarContainer = styled.div`
   margin-right: auto;
 `;
 
-const data = SuppliersData.map((supplier) => {
+const data = suppliersData.map((supplier) => {
     const companyAvatar = supplier.Contact.replace(' ', '-') + '.svg';
     return {
         _avatar: <AvatarContainer>
@@ -36,6 +36,7 @@ function Suppliers() {
 
     return (
         <Table
+            title={'Suppliers'}
             columns={['_avatar', 'Company', 'Contact', 'Title', 'City', 'Country']}
             data={suppliers}
             pagesNumber={Math.ceil(data.length / 20)}

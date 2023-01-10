@@ -1,4 +1,4 @@
-export const SuppliersData = [
+export const suppliersData = [
     {
         Id: 1,
         Company: 'Exotic Liquids',
@@ -233,7 +233,7 @@ export const SuppliersData = [
     },
 ];
 
-export const ProductsData = [
+export const productsData = [
     {
         Id: 1,
         Name: 'Chai',
@@ -852,7 +852,7 @@ export const ProductsData = [
     },
 ];
 
-export const OrdersData = [
+export const ordersData = [
     {
         Id: 10248,
         'Total Price': 252,
@@ -1555,7 +1555,7 @@ export const OrdersData = [
     },
 ];
 
-export const EmployeesData = [
+export const employeesData = [
     {
         Id: '1',
         Name: 'Nancy Davolio',
@@ -1630,7 +1630,7 @@ export const EmployeesData = [
     },
 ];
 
-export const CustomersData = [
+export const customersData = [
     {
         Company: 'Alfreds Futterkiste',
         Contact: 'Maria Anders',
