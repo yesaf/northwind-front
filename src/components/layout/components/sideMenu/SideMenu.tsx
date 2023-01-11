@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import MenuBlock from './MenuBlock';
 
 const Aside = styled.aside`
-  display: flex;
-  flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
@@ -15,6 +13,18 @@ const Aside = styled.aside`
   width: 15rem;
   z-index: 40;
   overflow: hidden;
+  
+  @media (max-width: 1023px) {
+    left: -15rem;
+
+    transition-duration: .15s;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    
+    &.open {
+      left: 0;
+    }
+  }
 `;
 
 const Name = styled.div`
@@ -29,17 +39,21 @@ const Name = styled.div`
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   width: 100%;
-  overflow: hidden;
 `;
 
 const Bold = styled.b`
   font-weight: 900;
 `;
 
-function SideMenu() {
+interface SideMenuProps {
+    isMenuOpen: boolean;
+}
+
+function SideMenu(props: SideMenuProps) {
+
     return (
         <Fragment>
-            <Aside>
+            <Aside className={props.isMenuOpen ? 'open' : ''}>
                 <Name>
                     <div>
                         <Bold>Northwind</Bold> Traders

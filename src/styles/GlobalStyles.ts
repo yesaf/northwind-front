@@ -21,8 +21,12 @@ const GlobalStyle = createGlobalStyle`
   }
   
   #root {
-    padding-left: 15rem;
     padding-top: 3.5rem;
+    //padding-left: 15rem;
+    //
+    //@media (max-width: 1023px) {
+    //  padding-left: 0;
+    //}
   }
   
   a {
