@@ -13,6 +13,7 @@ import Products from './components/products/Products';
 import Orders from './components/orders/Orders';
 import Employees from './components/employees/Employees';
 import Customers from './components/customers/Customers';
+import Search from './components/search/Search';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/orders" element={<Layout><Orders/></Layout>} />
                 <Route path="/employees" element={<Layout><Employees/></Layout>} />
                 <Route path="/customers" element={<Layout><Customers/></Layout>} />
+                <Route path="/search" element={<Layout><Search/></Layout>} />
 
                 <Route path="*" element={<Layout><h1>404</h1></Layout>} />
             </Routes>
