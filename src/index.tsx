@@ -7,12 +7,10 @@ import { Provider } from 'react-redux';
 const store = setupStore();
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement,
 );
 root.render(
-  <React.StrictMode>
     <Provider store={store}>
-        <App />
-    </Provider>
-  </React.StrictMode>
+        <App/>
+    </Provider>,
 );
