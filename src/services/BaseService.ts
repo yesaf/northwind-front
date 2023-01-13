@@ -16,6 +16,10 @@ class BaseService {
     getById(id: number | string) {
         return axios.get(this.url + id);
     }
+
+    getRowCount() {
+        return axios.get(this.url + 'rowCount');
+    }
 }
 
 export default BaseService;

@@ -71,3 +71,4 @@ export const BackButton = styled.button`
 export const NoData = styled.div`
   margin: 1.5rem;
 `;
+

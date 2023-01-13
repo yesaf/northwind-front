@@ -41,7 +41,7 @@ export const logSlice = createSlice({
             state.queryCount++;
             state.keywordsCount.select += action.payload.query.split('SELECT').length - 1;
             state.keywordsCount.where += action.payload.query.split('WHERE').length - 1;
-            state.keywordsCount.leftJoin += action.payload.query.split('LEFT JOIN').length - 1;
+            state.keywordsCount.leftJoin += action.payload.query.split('JOIN').length - 1;
         },
         addResultCount: (state, action: PayloadAction<number>) => {
             state.resultCount += action.payload;

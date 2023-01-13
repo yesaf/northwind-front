@@ -8,6 +8,12 @@ export type Response<T> = {
     },
 }
 
+type RowCount = {
+    rowCount: number,
+}
+
+export type RowCountResponse = Response<RowCount>;
+
 export type Supplier = {
     _avatar?: ReactElement,
     "Id": number,
@@ -32,6 +38,19 @@ export type Product = {
     "Price": number,
     "Stock": number,
     "Orders": number
+}
+
+export type ProductWithDetails = {
+    "Id": number,
+    "ProductName": string,
+    "SupplierId": number,
+    "Supplier": string,
+    "Quantity per unit": string,
+    "Unit price": number,
+    "Units in stock": number,
+    "Units on order": number,
+    "Reorder level": number,
+    "Discontinued": number,
 }
 
 export type Order = {

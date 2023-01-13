@@ -1,7 +1,9 @@
 import BaseService from './BaseService';
 import { AxiosResponse } from 'axios';
-import { Product, Supplier, Response, Order, Employee, Customer,
-    SupplierWithDetails } from '../types/ServerResponses';
+import {
+    Product, Supplier, Response, Order, Employee, Customer,
+    SupplierWithDetails, ProductWithDetails,
+} from '../types/ServerResponses';
 
 export class SuppliersService extends BaseService {
     constructor() {
@@ -26,7 +28,7 @@ export class ProductsService extends BaseService {
         return this.get(params);
     }
 
-    getProductById(id: string): Promise<AxiosResponse<Response<Product>>> {
+    getProductById(id: string): Promise<AxiosResponse<Response<ProductWithDetails>>> {
         return this.getById(id);
     }
 }
