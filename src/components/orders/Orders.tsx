@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Table from '../UI/table/Table';
-import { ordersData } from '../../tmp/data';
 import { Order } from '../../types/ServerResponses';
 import { OrdersService } from '../../services/Services';
 import { useAppDispatch } from '../../hooks/redux';
@@ -10,6 +9,7 @@ import { createLog } from '../../helpers/createLog';
 function Orders() {
     const limit = 20;
     const [orders, setOrders] = useState<undefined | Order[]>();
+    const [count, setCount] = useState(0);
     const service = new OrdersService();
     const dispatch = useAppDispatch();
     const addLog = logSlice.actions.addLog;
@@ -26,7 +26,15 @@ function Orders() {
         });
     }
 
+    const getOrdersCount = () => {
+        service.getRowCount().then((response) => {
+            dispatch(addLog(createLog(response.data)));
+            setCount(response.data.data.data[0].RowCount);
+        });
+    }
+
     useEffect(() => {
+        getOrdersCount();
         getOrders(1);
     })
 
@@ -37,12 +45,12 @@ function Orders() {
     return (
         <>
             {
-                orders &&
+                orders && count &&
                 <Table
                     title={'Orders'}
                     columns={['Id', 'Total Price', 'Products', 'Quantity', 'Shipped', 'Ship Name', 'City', 'Country']}
                     data={orders}
-                    pagesNumber={Math.ceil(ordersData.length / limit)}
+                    pagesNumber={Math.ceil(count / limit)}
                     linksColumn={'Id'}
                     idColumn={'Id'}
                     onPageChange={(newPage) => setPage(newPage)}

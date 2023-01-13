@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Table from '../UI/table/Table';
-import { customersData } from '../../tmp/data';
 import { Customer } from '../../types/ServerResponses';
 import { CustomersService } from '../../services/Services';
 import { useAppDispatch } from '../../hooks/redux';
@@ -11,6 +10,7 @@ import { createLog } from '../../helpers/createLog';
 function Customers() {
     const limit = 20;
     const [customers, setCustomers] = useState<undefined | Customer[]>();
+    const [count, setCount] = useState(0);
     const service = new CustomersService();
     const dispatch = useAppDispatch();
     const addLog = logSlice.actions.addLog;
@@ -27,7 +27,15 @@ function Customers() {
         });
     };
 
+    const getCustomersCount = () => {
+        service.getRowCount().then((response) => {
+            dispatch(addLog(createLog(response.data)));
+            setCount(response.data.data.data[0].RowCount);
+        });
+    }
+
     useEffect(() => {
+        getCustomersCount()
         getCustomers(1);
     }, []);
 
@@ -43,7 +51,7 @@ function Customers() {
                     title={'Customers'}
                     columns={['Company', 'Contact', 'Title', 'City', 'Country']}
                     data={customers}
-                    pagesNumber={Math.ceil(customersData.length / limit)}
+                    pagesNumber={Math.ceil(count / limit)}
                     linksColumn={'Company'}
                     idColumn={'Id'}
                     onPageChange={(newPage) => setPage(newPage)}

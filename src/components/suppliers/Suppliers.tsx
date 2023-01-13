@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Table from '../UI/table/Table';
-import { suppliersData } from '../../tmp/data';
 import styled from 'styled-components';
 import { SuppliersService } from '../../services/Services';
 import { Supplier } from '../../types/ServerResponses';
@@ -23,6 +22,7 @@ function Suppliers() {
     const limit = 20;
     const service = new SuppliersService();
     const [suppliers, setSuppliers] = useState<undefined | Supplier[]>();
+    const [count, setCount] = useState(0);
     const dispatch = useAppDispatch();
     const addLog = logSlice.actions.addLog;
     const addResultCount = logSlice.actions.addResultCount;
@@ -49,7 +49,15 @@ function Suppliers() {
         });
     };
 
+    const getSuppliersCount = () => {
+        service.getRowCount().then((response) => {
+            dispatch(addLog(createLog(response.data)));
+            setCount(response.data.data.data[0].RowCount);
+        });
+    }
+
     useEffect(() => {
+        getSuppliersCount();
         getSuppliers(1);
     }, []);
 
@@ -65,7 +73,7 @@ function Suppliers() {
                     title={'Suppliers'}
                     columns={['_avatar', 'Company', 'Contact', 'Title', 'City', 'Country']}
                     data={suppliers}
-                    pagesNumber={Math.ceil(suppliersData.length / 20)}
+                    pagesNumber={Math.ceil(count / limit)}
                     linksColumn={'Company'}
                     idColumn={'Id'}
                     onPageChange={(newPage) => setPage(newPage)}

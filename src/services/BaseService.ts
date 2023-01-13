@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import { RowCountResponse } from '../types/ServerResponses';
 
 class BaseService {
     private readonly url: string;
@@ -17,7 +18,7 @@ class BaseService {
         return axios.get(this.url + id);
     }
 
-    getRowCount() {
+    getRowCount(): Promise<AxiosResponse<RowCountResponse>> {
         return axios.get(this.url + 'rowCount');
     }
 }

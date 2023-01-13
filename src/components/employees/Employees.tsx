@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Table from '../UI/table/Table';
-import { employeesData } from '../../tmp/data';
 import styled from 'styled-components';
 import { EmployeesService } from '../../services/Services';
 import { Employee } from '../../types/ServerResponses';
@@ -23,6 +22,7 @@ const AvatarContainer = styled.div`
 function Employees() {
     const limit = 20;
     const [employees, setEmployees] = useState<undefined | Employee[]>();
+    const [count, setCount] = useState(0);
     const service = new EmployeesService();
     const dispatch = useAppDispatch();
     const addLog = logSlice.actions.addLog;
@@ -49,7 +49,15 @@ function Employees() {
         });
     };
 
+    const getEmployeesCount = () => {
+        service.getRowCount().then((response) => {
+            dispatch(addLog(createLog(response.data)));
+            setCount(response.data.data.data[0].RowCount);
+        });
+    }
+
     useEffect(() => {
+        getEmployeesCount();
         getEmployees(1);
     }, []);
 
@@ -65,7 +73,7 @@ function Employees() {
                     title={'Employees'}
                     columns={['_avatar', 'Name', 'Title', 'City', 'Phone', 'Country']}
                     data={employees}
-                    pagesNumber={Math.ceil(employeesData.length / limit)}
+                    pagesNumber={Math.ceil(count / limit)}
                     linksColumn={'Name'}
                     idColumn={'Id'}
                     onPageChange={(newPage) => setPage(newPage)}

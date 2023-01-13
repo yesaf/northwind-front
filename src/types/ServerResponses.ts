@@ -9,7 +9,7 @@ export type Response<T> = {
 }
 
 type RowCount = {
-    rowCount: number,
+    RowCount: number,
 }
 
 export type RowCountResponse = Response<RowCount>;
