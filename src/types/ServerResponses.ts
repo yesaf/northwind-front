@@ -18,6 +18,13 @@ export type Supplier = {
     "Country": string,
 }
 
+export type SupplierWithDetails = Supplier & {
+    "Address": string,
+    "Region": string,
+    "Postal Code": string,
+    "Phone": string,
+}
+
 export type Product = {
     "Id": number,
     "Name": string,

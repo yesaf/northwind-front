@@ -3,7 +3,10 @@ import Table from '../UI/table/Table';
 import { suppliersData } from '../../tmp/data';
 import styled from 'styled-components';
 import { SuppliersService } from '../../services/Services';
-import { Supplier } from '../../types/types';
+import { Supplier } from '../../types/ServerResponses';
+import { useAppDispatch } from '../../hooks/redux';
+import { logSlice } from '../../store/reducers/LogSlice';
+import { createLog } from '../../helpers/createLog';
 
 const Avatar = styled.img`
   border-radius: 50%;
@@ -20,11 +23,19 @@ function Suppliers() {
     const limit = 20;
     const service = new SuppliersService();
     const [suppliers, setSuppliers] = useState<undefined | Supplier[]>();
+    const dispatch = useAppDispatch();
+    const addLog = logSlice.actions.addLog;
+    const addResultCount = logSlice.actions.addResultCount;
+
 
     const getSuppliers = (page: number) => {
         service.getSuppliers({ limit, page }).then((response) => {
-            const data = response.data.data.data;
-            const dataWithAvatar = data.map((supplier) => {
+            const results = response.data.data.data;
+
+            dispatch(addLog(createLog(response.data)));
+            dispatch(addResultCount(results.length));
+
+            const resultsWithAvatar = results.map((supplier) => {
                 const companyAvatar = supplier.Contact.replace(' ', '-') + '.svg';
                 return {
                     _avatar: <AvatarContainer>
@@ -34,7 +45,7 @@ function Suppliers() {
                 };
             })
 
-            setSuppliers(dataWithAvatar);
+            setSuppliers(resultsWithAvatar);
         });
     };
 

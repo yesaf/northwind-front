@@ -2,17 +2,27 @@ import React, { useEffect, useState } from 'react';
 import Table from '../UI/table/Table';
 import { productsData } from '../../tmp/data';
 import { ProductsService } from '../../services/Services';
-import { Product } from '../../types/types';
+import { Product } from '../../types/ServerResponses';
+import { useAppDispatch } from '../../hooks/redux';
+import { logSlice } from '../../store/reducers/LogSlice';
+import { createLog } from '../../helpers/createLog';
 
 function Products() {
     const limit = 20;
     const [products, setProducts] = useState<undefined | Product[]>();
     const service = new ProductsService();
+    const dispatch = useAppDispatch();
+    const addLog = logSlice.actions.addLog;
+    const addResultCount = logSlice.actions.addResultCount;
 
     const getProducts = (page: number) => {
         service.getProducts({ limit, page }).then((response) => {
-            const data = response.data.data.data;
-            setProducts(data);
+            const results = response.data.data.data;
+
+            dispatch(addLog(createLog(response.data)));
+            dispatch(addResultCount(results.length));
+
+            setProducts(results);
         });
     };
 

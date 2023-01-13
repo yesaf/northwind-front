@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import Table from '../UI/table/Table';
 import { customersData } from '../../tmp/data';
-import { Customer } from '../../types/types';
+import { Customer } from '../../types/ServerResponses';
 import { CustomersService } from '../../services/Services';
+import { useAppDispatch } from '../../hooks/redux';
+import { logSlice } from '../../store/reducers/LogSlice';
+import { createLog } from '../../helpers/createLog';
 
 
 function Customers() {
     const limit = 20;
     const [customers, setCustomers] = useState<undefined | Customer[]>();
     const service = new CustomersService();
+    const dispatch = useAppDispatch();
+    const addLog = logSlice.actions.addLog;
+    const addResultCount = logSlice.actions.addResultCount;
 
     const getCustomers = (page: number) => {
         service.getCustomers({ limit, page }).then((response) => {
-            const data = response.data.data.data;
-            setCustomers(data);
+            const results = response.data.data.data;
+
+            dispatch(addLog(createLog(response.data)));
+            dispatch(addResultCount(results.length));
+
+            setCustomers(results);
         });
     };
 

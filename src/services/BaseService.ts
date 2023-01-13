@@ -12,6 +12,10 @@ class BaseService {
             params: params
         });
     }
+
+    getById(id: number | string) {
+        return axios.get(this.url + id);
+    }
 }
 
 export default BaseService;

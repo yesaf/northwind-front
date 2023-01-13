@@ -1,47 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import { InfoContainer, Caption, LogContainer, Text, SubText } from './Dashboard.styles';
+import { useAppSelector } from '../../hooks/redux';
+import Logs from './Logs';
 
-const InfoContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  padding: 1.5rem;
-`;
-
-const Caption = styled.p`
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  margin: 0;
-`;
-
-const Text = styled.p`
-  font-size: .875rem;
-  line-height: 1.25rem;
-  margin: 0;
-`;
-
-const SubText = styled.p`
-  --tw-text-opacity: 1;
-  color: rgb(31 41 55/var(--tw-text-opacity));
-
-  font-size: .75rem;
-  line-height: 1rem;
-  margin: 0;
-`;
-
-const LogContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-left: 1.5rem;
-  `;
+type ApiResponse = {
+    city: string,
+    continentCode: string,
+    continentName: string,
+    countryCode: string,
+    countryName: string,
+    ipAddress: string,
+    stateProv: string,
+}
 
 function Dashboard() {
     const [userCountry, setUserCountry] = useState('');
+    const log = useAppSelector(state => state.log);
 
     // useEffect(() => {
-    //     axios.get('https://api.db-ip.com/v2/free/self').then((res) => {
-    //         console.log(res.data);
+    //     axios.get('https://api.db-ip.com/v2/free/self').then((res: AxiosResponse<ApiResponse>) => {
+    //         setUserCountry(res.data.countryCode);
     //     });
     // }, []);
 
@@ -55,16 +34,17 @@ function Dashboard() {
                 </div>
                 <div>
                     <Caption>SQL Metrics</Caption>
-                    <Text>Query count: 0</Text>
-                    <Text>Results count: 0</Text>
-                    <Text># SELECT: 0</Text>
-                    <Text># SELECT WHERE: 0</Text>
-                    <Text># SELECT LEFT JOIN: 0</Text>
+                    <Text>Query count: {log.queryCount}</Text>
+                    <Text>Results count: {log.resultCount}</Text>
+                    <Text># SELECT: {log.keywordsCount.select}</Text>
+                    <Text># SELECT WHERE: {log.keywordsCount.where}</Text>
+                    <Text># SELECT LEFT JOIN: {log.keywordsCount.leftJoin}</Text>
                 </div>
             </InfoContainer>
             <LogContainer>
                 <Caption>Activity log</Caption>
                 <SubText>Explore the app and see metrics here</SubText>
+                <Logs/>
             </LogContainer>
         </>
     );

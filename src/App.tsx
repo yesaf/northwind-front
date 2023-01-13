@@ -14,6 +14,7 @@ import Orders from './components/orders/Orders';
 import Employees from './components/employees/Employees';
 import Customers from './components/customers/Customers';
 import Search from './components/search/Search';
+import SupplierDetails from './components/suppliers/SupplierDetails';
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
                 <Route path="/employees" element={<Layout><Employees/></Layout>} />
                 <Route path="/customers" element={<Layout><Customers/></Layout>} />
                 <Route path="/search" element={<Layout><Search/></Layout>} />
+
+                <Route path="/supplier/:id" element={<Layout><SupplierDetails/></Layout>}/>
 
                 <Route path="*" element={<Layout><h1>404</h1></Layout>} />
             </Routes>
