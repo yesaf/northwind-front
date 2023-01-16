@@ -146,3 +146,17 @@ export type Customer = {
     "Country": string
 }
 
+export type CustomerWithDetails = {
+    "Id": string,
+    "Company Name": string,
+    "Contact Name": string,
+    "Contact Title": string,
+    "Adress": string,
+    "City": string,
+    "Postal Code": string,
+    "Region": string,
+    "Country": string,
+    "Phone": string,
+    "Fax": string
+}
+

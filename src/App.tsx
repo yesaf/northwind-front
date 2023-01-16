@@ -17,6 +17,7 @@ import Search from './components/search/Search';
 import SupplierDetails from './components/suppliers/SupplierDetails';
 import ProductDetails from './components/products/ProductDetails';
 import OrderDetails from './components/orders/OrderDetails';
+import CustomerDetails from './components/customers/CustomerDetails';
 
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
                 <Route path="/supplier/:id" element={<Layout><SupplierDetails/></Layout>}/>
                 <Route path="/product/:id" element={<Layout><ProductDetails/></Layout>}/>
                 <Route path="/order/:id" element={<Layout><OrderDetails/></Layout>}/>
+                <Route path="/employees/:id" element={<Layout><OrderDetails/></Layout>}/>
+                <Route path="/customer/:id" element={<Layout><CustomerDetails/></Layout>}/>
 
                 <Route path="*" element={<Layout><h1>404</h1></Layout>} />
             </Routes>
