@@ -64,6 +64,51 @@ export type Order = {
     "Country": string,
 }
 
+export type OrderWithDetails = {
+    "Id": number,
+    "Customer Id": string,
+    "Ship Name": string,
+    "Total Products": number,
+    "Total Quantity": number,
+    "Total Price": number,
+    "Total Discount": number,
+    "Ship Via": string,
+    "Freight": number,
+    "Order Date": string,
+    "Required Date": string,
+    "Shipped Date": string,
+    "Ship City": string,
+    "Ship Region": string,
+    "Ship Postal Code": string,
+    "Ship Country": string
+}
+
+type OrderInfo = {
+    sqlString: string,
+    data: OrderWithDetails[],
+}
+
+export type ProductInOrder = {
+    "Id": number,
+    "ProductId": number,
+    "Product": string,
+    "Quantity": number,
+    "Order Price": number,
+    "Total Price": number,
+    "Discount": number
+}
+
+type ProductsInOrder = {
+    sqlString: string,
+    data: ProductInOrder[],
+}
+
+export type OrderWithDetailsResponse = {
+    status: string,
+    orderInformation: OrderInfo,
+    productsInOrder: ProductsInOrder,
+};
+
 export type Employee = {
     _avatar?: ReactElement,
     "Id": number,
@@ -72,6 +117,24 @@ export type Employee = {
     "City": string,
     "Phone": string,
     "Country": string,
+}
+
+export type EmployeeWithDetails = {
+    "Id": number,
+    "Name": string,
+    "Title": string,
+    "Title Of Courtesy": string,
+    "Birth Date": string,
+    "Hire Date": string,
+    "Address": string,
+    "City": string,
+    "Postal Code": string,
+    "Country": string,
+    "Home Phone": string,
+    "Extension": string,
+    "Notes": string,
+    "ReportsToId": number,
+    "Reports To": string
 }
 
 export type Customer = {
