@@ -8,8 +8,8 @@ class BaseService {
         this.url = url;
     }
 
-    get(params: any) {
-        return axios.get(this.url, {
+    get(params: any, linkExtension?: string) {
+        return axios.get(this.url + (linkExtension ? linkExtension : ''), {
             params: params
         });
     }

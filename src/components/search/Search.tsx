@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Radio from './Radio';
 import * as Styles from './SearchStyles';
+import SearchResults from './SearchResults';
+import { CustomerSearchResult, ProductSearchResult } from '../../types/ServerResponses';
+import { CustomersService, ProductsService } from '../../services/Services';
+import { createLog } from '../../helpers/createLog';
+import { useAppDispatch } from '../../hooks/redux';
+import { logSlice } from '../../store/reducers/LogSlice';
 
 
 function Search() {
 
+    const productsService = new ProductsService();
+    const customersService = new CustomersService();
+
+    const dispatch = useAppDispatch();
+    const addLog = logSlice.actions.addLog;
+    const addResultCount = logSlice.actions.addResultCount;
+
     const [inputValue, setInputValue] = useState('');
     const [table, setTable] = useState('products');
     const [query, setQuery] = useState('');
+    const [results, setResults] = useState<ProductSearchResult[] | CustomerSearchResult[]>([]);
+
+
 
     const handleCheck = (label: string) => {
         setTable(label);
@@ -18,6 +34,28 @@ function Search() {
             setQuery(inputValue);
         }
     }
+
+    useEffect(() => {
+        if (query) {
+            if (table === 'products') {
+                productsService.searchProducts(query).then((response) => {
+                    const res = response.data;
+                    const results = res.data.data;
+                    setResults(results);
+                    dispatch(addLog(createLog(res)));
+                    dispatch(addResultCount(results.length));
+                });
+            } else if (table === 'customers') {
+                customersService.searchCustomers(query).then((response) => {
+                    const res = response.data;
+                    const results = res.data.data;
+                    setResults(results);
+                    dispatch(addLog(createLog(res)));
+                    dispatch(addResultCount(results.length));
+                });
+            }
+        }
+    }, [query, table]);
 
     return (
         <Styles.Container>
@@ -39,6 +77,10 @@ function Search() {
                 </Styles.TablesContainer>
             </Styles.Field>
             <Styles.ResultsTitle>Search Results</Styles.ResultsTitle>
+            {
+                results.length > 0 &&
+                <SearchResults results={results}/>
+            }
         </Styles.Container>
     );
 }

@@ -28,7 +28,7 @@ function OrderDetails() {
                 createLogOrderDetails(response.data).forEach((log) => {
                     dispatch(addLog(log));
                 });
-                dispatch(addResultCount(2));
+                dispatch(addResultCount(1 + response.data.productsInOrder.data.length));
                 setOrder(response.data.orderInformation.data[0]);
                 setProductsInOrder(response.data.productsInOrder.data);
             });

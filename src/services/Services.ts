@@ -1,8 +1,18 @@
 import BaseService from './BaseService';
 import { AxiosResponse } from 'axios';
 import {
-    Product, Supplier, Response, Order, Employee, Customer,
-    SupplierWithDetails, ProductWithDetails, OrderWithDetailsResponse, CustomerWithDetails, EmployeeWithDetails,
+    Product,
+    Supplier,
+    Response,
+    Order,
+    Employee,
+    Customer,
+    SupplierWithDetails,
+    ProductWithDetails,
+    OrderWithDetailsResponse,
+    CustomerWithDetails,
+    EmployeeWithDetails,
+    CustomerSearchResult, ProductSearchResult,
 } from '../types/ServerResponses';
 
 export class SuppliersService extends BaseService {
@@ -30,6 +40,10 @@ export class ProductsService extends BaseService {
 
     getProductById(id: string): Promise<AxiosResponse<Response<ProductWithDetails>>> {
         return this.getById(id);
+    }
+
+    searchProducts(searchString: string): Promise<AxiosResponse<Response<ProductSearchResult>>> {
+        return this.get({ value: searchString }, 'search/');
     }
 }
 
@@ -73,6 +87,10 @@ export class CustomersService extends BaseService {
 
     getCustomerById(id: string): Promise<AxiosResponse<Response<CustomerWithDetails>>> {
         return this.getById(id);
+    }
+
+    searchCustomers(searchString: string ): Promise<AxiosResponse<Response<CustomerSearchResult>>> {
+        return this.get({ value: searchString }, 'search/');
     }
 }
 

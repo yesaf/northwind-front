@@ -169,3 +169,18 @@ export type CustomerWithDetails = {
     "Fax": string
 }
 
+export type ProductSearchResult = {
+    "Id": number,
+    "Name": string,
+    "Qt per unit": string,
+    "Price": number,
+    "Stock": number,
+}
+
+export type CustomerSearchResult = {
+    "Id": string,
+    "Name": string,
+    "Contact": string,
+    "Title": string,
+    "Phone": string,
+}
