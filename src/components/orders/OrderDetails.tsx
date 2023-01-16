@@ -1,9 +1,8 @@
 import React, { memo, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { OrderWithDetails, ProductInOrder, ProductWithDetails } from '../../types/ServerResponses';
+import { OrderWithDetails, ProductInOrder } from '../../types/ServerResponses';
 import { OrdersService } from '../../services/Services';
 import MaterialIcon from '../../styles/MaterialIcon';
-import { useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
     Header, HeaderText, DetailsContainer, Details,
     Field, FieldCaption, BackButton, NoData,

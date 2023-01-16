@@ -1,9 +1,8 @@
 import React, { memo, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { SupplierWithDetails } from '../../types/ServerResponses';
 import { SuppliersService } from '../../services/Services';
 import MaterialIcon from '../../styles/MaterialIcon';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Header, HeaderText, DetailsContainer, Details,
     Field, FieldCaption, BackButton, NoData } from '../../styles/DetailsStyles'
 import { useAppDispatch } from '../../hooks/redux';
