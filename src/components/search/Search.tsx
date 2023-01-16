@@ -21,8 +21,9 @@ function Search() {
     const [inputValue, setInputValue] = useState('');
     const [table, setTable] = useState('products');
     const [query, setQuery] = useState('');
-    const [results, setResults] = useState<ProductSearchResult[] | CustomerSearchResult[]>([]);
-
+    const [productsResult, setProductsResult] = useState<ProductSearchResult[]>([]);
+    const [customersResult, setCustomersResult] = useState<CustomerSearchResult[]>([]);
+    const [loading, setLoading] = useState(false);
 
 
     const handleCheck = (label: string) => {
@@ -33,25 +34,30 @@ function Search() {
         if (key === 'Enter') {
             setQuery(inputValue);
         }
-    }
+    };
 
     useEffect(() => {
         if (query) {
+
             if (table === 'products') {
+                setLoading(true);
                 productsService.searchProducts(query).then((response) => {
                     const res = response.data;
                     const results = res.data.data;
-                    setResults(results);
+                    setProductsResult(results);
                     dispatch(addLog(createLog(res)));
                     dispatch(addResultCount(results.length));
+                    setLoading(false);
                 });
             } else if (table === 'customers') {
+                setLoading(true);
                 customersService.searchCustomers(query).then((response) => {
                     const res = response.data;
                     const results = res.data.data;
-                    setResults(results);
+                    setCustomersResult(results);
                     dispatch(addLog(createLog(res)));
                     dispatch(addResultCount(results.length));
+                    setLoading(false);
                 });
             }
         }
@@ -78,8 +84,13 @@ function Search() {
             </Styles.Field>
             <Styles.ResultsTitle>Search Results</Styles.ResultsTitle>
             {
-                results.length > 0 &&
-                <SearchResults results={results}/>
+                loading ?
+                    <Styles.Message>Loading...</Styles.Message> :
+                    table === 'customers' && customersResult.length > 0 ?
+                        <SearchResults results={customersResult}/> :
+                        table === 'products' && productsResult.length > 0 ?
+                            <SearchResults results={productsResult}/> :
+                            <Styles.Message>No results</Styles.Message>
             }
         </Styles.Container>
     );
