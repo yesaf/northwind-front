@@ -59,7 +59,7 @@ function CustomerDetails() {
                                 </Field>
                                 <Field>
                                     <FieldCaption>Address</FieldCaption>
-                                    <span>{customer.Adress}</span>
+                                    <span>{customer.Address}</span>
                                 </Field>
                                 <Field>
                                     <FieldCaption>City</FieldCaption>

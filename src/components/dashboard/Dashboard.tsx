@@ -18,11 +18,11 @@ function Dashboard() {
     const [userCountry, setUserCountry] = useState('');
     const log = useAppSelector(state => state.log);
 
-    // useEffect(() => {
-    //     axios.get('https://api.db-ip.com/v2/free/self').then((res: AxiosResponse<ApiResponse>) => {
-    //         setUserCountry(res.data.countryCode);
-    //     });
-    // }, []);
+    useEffect(() => {
+        axios.get('https://api.db-ip.com/v2/free/self').then((res: AxiosResponse<ApiResponse>) => {
+            setUserCountry(res.data.countryCode);
+        });
+    }, []);
 
 
     return (

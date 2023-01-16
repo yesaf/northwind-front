@@ -4,6 +4,9 @@ export type Response<T> = {
     status: string,
     data: {
         sqlString: string,
+        ts: string,
+        servedBy: string,
+        duration: number,
         data: T[],
     },
 }
@@ -85,6 +88,9 @@ export type OrderWithDetails = {
 
 type OrderInfo = {
     sqlString: string,
+    ts: string,
+    servedBy: string,
+    duration: number,
     data: OrderWithDetails[],
 }
 
@@ -100,6 +106,9 @@ export type ProductInOrder = {
 
 type ProductsInOrder = {
     sqlString: string,
+    ts: string,
+    servedBy: string,
+    duration: number,
     data: ProductInOrder[],
 }
 
@@ -151,7 +160,7 @@ export type CustomerWithDetails = {
     "Company Name": string,
     "Contact Name": string,
     "Contact Title": string,
-    "Adress": string,
+    "Address": string,
     "City": string,
     "Postal Code": string,
     "Region": string,
