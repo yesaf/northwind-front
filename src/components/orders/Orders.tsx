@@ -36,7 +36,7 @@ function Orders() {
     useEffect(() => {
         getOrdersCount();
         getOrders(1);
-    })
+    }, []);
 
     const setPage = (page: number) => {
         getOrders(page);
@@ -54,6 +54,8 @@ function Orders() {
                     linksColumn={'Id'}
                     idColumn={'Id'}
                     onPageChange={(newPage) => setPage(newPage)}
+                    priceColumns={['Total Price']}
+                    dateColumns={['Shipped']}
                 />
             }
         </>

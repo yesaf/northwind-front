@@ -22,6 +22,8 @@ interface RowProps {
     linksColumn: string;
     columns: string[];
     idColumn: string;
+    priceColumns: string[];
+    dateColumns: string[];
 }
 
 function Row(props: RowProps) {
@@ -31,15 +33,22 @@ function Row(props: RowProps) {
         <TableRow>
             {
                 props.columns.map((key, index) => {
+                    let value = props.rowData[key];
+                    if (props.priceColumns.includes(key)) {
+                        value = '$' + value;
+                    }
+                    if (props.dateColumns.includes(key)) {
+                        value = value.slice(0, 10);
+                    }
                     return (
                         <TableCell key={index}>
                             {
                                 key === props.linksColumn ?
                                     <Link to={`${location.pathname.slice(0, -1)}/${props.rowData[props.idColumn]}`}>
-                                        {props.rowData[key]}
+                                        {value}
                                     </Link>
                                         :
-                                    props.rowData[key]
+                                    value
                             }
                         </TableCell>
                     )

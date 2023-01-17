@@ -55,6 +55,7 @@ function Products() {
                     linksColumn={'Name'}
                     idColumn={'Id'}
                     onPageChange={(newPage) => setPage(newPage)}
+                    priceColumns={['Price']}
                 />
             }
         </>

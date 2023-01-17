@@ -11,6 +11,8 @@ interface TableProps {
     idColumn: string;
     title: string;
     onPageChange: (newPage: number) => void;
+    priceColumns: string[];
+    dateColumns: string[];
 }
 
 function firstCapital(str: string) {
@@ -54,6 +56,8 @@ function Table(props: TableProps) {
                                 columns={props.columns}
                                 linksColumn={props.linksColumn}
                                 idColumn={props.idColumn}
+                                priceColumns={props.priceColumns}
+                                dateColumns={props.dateColumns}
                             />
                         );
                     })
@@ -64,6 +68,11 @@ function Table(props: TableProps) {
                         onChangePage={(page) => handlePageChange(page)}/>
         </TableContainer>
     );
+}
+
+Table.defaultProps = {
+    priceColumns: [],
+    dateColumns: []
 }
 
 
