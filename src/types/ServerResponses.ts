@@ -58,7 +58,7 @@ export type ProductWithDetails = {
 
 export type Order = {
     "Id": number,
-    "Total Price": number,
+    "Total Price": number | string,
     "Products": number,
     "Quantity": number,
     "Shipped": string,

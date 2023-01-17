@@ -20,7 +20,7 @@ function Orders() {
             const results = response.data.data.data;
 
             const resultsPriceRound = results.map((order) => {
-                order['Total Price'] = Math.round(order['Total Price'] * 100) / 100;
+                order['Total Price'] = (order['Total Price'] as number).toFixed(2);
                 return order;
             })
 
