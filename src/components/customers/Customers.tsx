@@ -5,18 +5,7 @@ import { CustomersService } from '../../services/Services';
 import { useAppDispatch } from '../../hooks/redux';
 import { logSlice } from '../../store/reducers/LogSlice';
 import { createLog } from '../../helpers/createLog';
-import styled from 'styled-components';
-
-const Avatar = styled.img`
-  border-radius: 50%;
-`;
-
-const AvatarContainer = styled.div`
-  height: 1.5rem;
-  width: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
-`;
+import { Avatar, AvatarContainer } from '../../styles/Avatar';
 
 function Customers() {
     const limit = 20;

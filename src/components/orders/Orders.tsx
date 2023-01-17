@@ -19,10 +19,15 @@ function Orders() {
         service.getOrders({ limit, page }).then((response) => {
             const results = response.data.data.data;
 
+            const resultsPriceRound = results.map((order) => {
+                order['Total Price'] = Math.round(order['Total Price'] * 100) / 100;
+                return order;
+            })
+
             dispatch(addLog(createLog(response.data)));
             dispatch(addResultCount(results.length));
 
-            setOrders(results);
+            setOrders(resultsPriceRound);
         });
     }
 

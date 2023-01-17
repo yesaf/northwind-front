@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Table from '../UI/table/Table';
-import styled from 'styled-components';
 import { EmployeesService } from '../../services/Services';
 import { Employee } from '../../types/ServerResponses';
 import { useAppDispatch } from '../../hooks/redux';
 import { logSlice } from '../../store/reducers/LogSlice';
 import { createLog } from '../../helpers/createLog';
-
-const Avatar = styled.img`
-  border-radius: 50%;
-`;
-
-const AvatarContainer = styled.div`
-  height: 1.5rem;
-  width: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
-`;
+import { Avatar, AvatarContainer } from '../../styles/Avatar';
 
 
 function Employees() {
