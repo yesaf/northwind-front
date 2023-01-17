@@ -30,7 +30,7 @@ function SearchResults({ results }: SearchResultsProps) {
 
     const customerResultDiv = (index: number, customer: CustomerSearchResult) => (
         <ResultContainer key={index}>
-            <Link to={`/product/${customer['Id']}`}>{customer['Name']}</Link>
+            <Link to={`/customer/${customer['Id']}`}>{customer['Name']}</Link>
             <ResultDetails>
               #{index+1}, Contact: {customer['Contact']}, Title: {customer['Title']}, Phone: {customer['Phone']}
             </ResultDetails>

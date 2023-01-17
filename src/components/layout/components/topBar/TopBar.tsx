@@ -11,10 +11,10 @@ const TimeContainer = styled.div`
   margin-left: 1.5rem;
   padding: 0.5rem 0.75rem;
   align-items: center;
-  
-    @media (max-width: 1023px) {
-      display: none;
-    }
+
+  @media (max-width: 1023px) {
+    display: none;
+  }
 `;
 
 const NavBar = styled.nav`
@@ -50,7 +50,8 @@ const NavBar = styled.nav`
 
 const OpenMenuButton = styled(MaterialIcon)`
   padding: 0.5rem 0.75rem;
-  
+  cursor: pointer;
+
   @media (min-width: 1024px) {
     display: none;
   }
