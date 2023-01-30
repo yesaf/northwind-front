@@ -6,6 +6,8 @@ import SideMenu from './components/sideMenu/SideMenu';
 const MainSection = styled.section`
   padding: 1.5rem;
   width: calc(100% - 3rem);
+  height: calc(100vh - 6rem);
+  overflow-y: auto;
 
   transition-duration: .15s;
   transition-property: all;
